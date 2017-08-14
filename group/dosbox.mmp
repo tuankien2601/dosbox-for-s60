@@ -1,0 +1,260 @@
+TARGET dosbox.exe
+TARGETTYPE exe
+
+UID 0 0xA00042DD
+CAPABILITY NONE
+EPOCHEAPSIZE 4000000 20000000
+
+USERINCLUDE ..\include ..\src\platform\s60 ..\src
+
+
+SYSTEMINCLUDE	    \epoc32\include 
+SYSTEMINCLUDE		\epoc32\include\stdapis
+SYSTEMINCLUDE		\epoc32\include\stdapis\sys
+SYSTEMINCLUDE		\epoc32\include\stdapis\stlport
+SYSTEMINCLUDE		\epoc32\include\stdapis\stlport\stl
+SYSTEMINCLUDE		\epoc32\include\SDL
+
+
+/*
+
+// *** SDL
+
+// *** Macros
+
+
+//Enanable this to build on top of OpenC
+//#define OPENC OPENC
+
+#ifdef OPENC
+MACRO 	OPENC
+#else	
+MACRO	SYMBIANC
+#endif
+MACRO			SYMBIAN_SERIES60
+//MACRO			TEST_BM_DRAW
+MACRO			NO_SIGNAL_H
+MACRO			ENABLE_EPOC 
+MACRO			DISABLE_JOYSTICK
+MACRO			DISABLE_CDROM
+//MACRO			DISABLE_AUDIO
+
+// *** Sources
+
+SOURCEPATH 		..\..\sdl_s60\symbian\src
+
+// *** General sources
+SOURCE     		vectorbuffer.cpp
+SOURCE			sdlappsrv.cpp
+SOURCE			sdlenv.cpp
+SOURCE        	dsa.cpp 
+SOURCE			streamplayer.cpp
+SOURCE			sdlenvutils.cpp
+
+SOURCEPATH      ..\..\sdl_s60\src
+// *** General sources
+SOURCE          SDL.c
+SOURCE          SDL_error.c
+SOURCE          SDL_fatal.c
+SOURCE			main\symbian\SDL_libutils.cpp 
+SOURCE			main\symbian\SDL_main.cpp 
+// *** cpuinfo sources
+SOURCE  		cpuinfo\SDL_cpuinfo.c
+// *** Video sources
+SOURCE          video\SDL_blit.c
+SOURCE          video\SDL_blit_0.c
+SOURCE          video\SDL_blit_1.c
+SOURCE          video\SDL_blit_A.c
+SOURCE          video\SDL_blit_N.c
+SOURCE          video\SDL_bmp.c
+SOURCE          video\SDL_cursor.c
+SOURCE          video\SDL_gamma.c
+SOURCE          video\SDL_pixels.c
+SOURCE          video\SDL_RLEaccel.c
+SOURCE          video\SDL_stretch.c
+SOURCE          video\SDL_surface.c
+SOURCE          video\SDL_video.c
+SOURCE          video\SDL_yuv.c
+SOURCE          video\SDL_yuv_mmx.c
+SOURCE          video\SDL_yuv_sw.c
+SOURCE          video\symbian\SDL_epocvideo.cpp
+SOURCE          video\symbian\SDL_epocevents.cpp 
+// *** Audio sources
+SOURCE			audio\SDL_audio.c
+SOURCE			audio\SDL_audiocvt.c
+SOURCE			audio\SDL_audiodev.c
+//SOURCE		audio\SDL_audiomem.c
+SOURCE			audio\SDL_mixer.c
+SOURCE			audio\SDL_wave.c
+SOURCE			audio\symbian\SDL_epocaudio.cpp
+// *** Endian sources
+//SOURCE		endian\SDL_endian.c
+// *** Thread sources
+SOURCE          thread\SDL_thread.c
+SOURCE          thread\generic\SDL_syscond.c
+SOURCE          thread\symbian\SDL_sysmutex.cpp
+SOURCE          thread\symbian\SDL_syssem.cpp
+SOURCE          thread\symbian\SDL_systhread.cpp
+// *** Events sources
+SOURCE          events\SDL_active.c
+SOURCE          events\SDL_events.c
+SOURCE          events\SDL_keyboard.c
+SOURCE          events\SDL_mouse.c
+SOURCE          events\SDL_quit.c
+SOURCE          events\SDL_resize.c
+// *** Timer sources
+SOURCE          timer\SDL_timer.c
+SOURCE          timer\symbian\SDL_systimer.cpp
+// *** File sources
+SOURCE          file\SDL_rwops.c
+// *** Stdlib
+SOURCE			stdlib\SDL_string.c
+SOURCE			stdlib\SDL_getenv.c
+
+// *** More
+SOURCE 			cdrom\dummy\SDL_syscdrom.c
+SOURCE 			cdrom\SDL_cdrom.c
+SOURCE 			joystick\dummy\SDL_sysjoystick.c
+SOURCE 			joystick\SDL_joystick.c
+
+// *** Includes
+
+SYSTEMINCLUDE	..\..\sdl_s60\symbian\inc ..\..\sdl_s60\include
+#ifdef OPENC
+SYSTEMINCLUDE   \epoc32\include\stdapis
+#else
+SYSTEMINCLUDE   \epoc32\include\libc
+#endif
+
+USERINCLUDE     ..\..\sdl_s60\include 	..\..\sdl_s60\src 	..\..\sdl_s60\src\video		..\..\sdl_s60\src\events
+USERINCLUDE		..\..\sdl_s60\src\audio 	..\..\sdl_s60\src\audio\symbian
+USERINCLUDE     ..\..\sdl_s60\src\main\symbian ..\..\sdl_s60\src\video\symbian
+USERINCLUDE     ..\..\sdl_s60\src\thread ..\..\sdl_s60\src\thread\generic ..\..\sdl_s60\src\thread\symbian
+USERINCLUDE     ..\..\sdl_s60\src\timer ..\..\sdl_s60\src\joystick
+USERINCLUDE     ..\..\sdl_s60\symbian\inc  ..\..\sdl_s60\symbian\inc\internal
+
+// *** Libraries
+
+LIBRARY        euser.lib fbscli.lib ws32.LIB  gdi.lib
+LIBRARY        mediaclientaudiostream.lib
+LIBRARY        avkon.lib efsrv.lib bafl.lib apparc.lib
+LIBRARY        eikcore.lib cone.lib bitgdi.lib scdv.lib
+LIBRARY		   hal.lib 
+
+
+#ifdef DEBUG_TRACE_ENABLED
+LIBRARY        flogger.lib
+#endif
+
+#ifdef OPENC
+LIBRARY   		libc.lib
+LIBRARY	  		libm.lib
+#else
+LIBRARY 		estlib.lib 
+#endif
+
+
+*/
+
+
+
+/*
+SYSTEMINCLUDE \epoc32\include\stlport \epoc32\include\stdapis \epoc32\include\libc \epoc32\include \epoc32\include\SDL
+*/
+
+START RESOURCE dosbox.rss
+HEADER
+TARGETPATH \resource\apps
+END
+
+START RESOURCE dosbox_reg.rss
+  TARGETPATH \private\10003a3f\apps
+END
+
+OPTION CW -wchar_t on
+MACRO  _WCHAR_T_DECLARED
+
+
+/////////////
+// sources //
+/////////////
+
+// notes:
+// no midi
+// no debug
+// no serial
+
+SOURCEPATH ..\src
+SOURCE dosbox.cpp
+
+
+SOURCEPATH ..\src\dos
+SOURCE cdrom.cpp
+
+SOURCEPATH ..\src\fpu
+SOURCE fpu.cpp
+
+SOURCEPATH ..\src\gui
+SOURCE render.cpp render_scalers.cpp sdlmain.cpp
+
+
+
+
+
+
+
+
+//////////
+// libs //
+//////////
+
+STATICLIBRARY	libcrt0.lib
+
+LIBRARY			libstdcpp.lib
+LIBRARY			libc.lib
+LIBRARY			libpthread.lib
+LIBRARY			euser.lib
+LIBRARY			libm.lib
+LIBRARY			efsrv.lib
+LIBRARY 		estlib.lib 
+LIBRARY			ezlib.lib
+LIBRARY 		sdl.lib 
+
+//LIBRARY			sdlexe.lib 
+
+LIBRARY 		avkon.lib
+LIBRARY 		apparc.lib
+LIBRARY 		cone.lib
+LIBRARY 		eikcore.lib
+LIBRARY		libgles_cm.lib
+
+SOURCEPATH ..\src\cpu
+SOURCE callback.cpp core_normal.cpp cpu.cpp flags.cpp modrm.cpp paging.cpp
+SOURCEPATH ..\src\dos
+SOURCE dos.cpp dos_classes.cpp dos_devices.cpp dos_execute.cpp dos_files.cpp dos_ioctl.cpp dos_keyboard_layout.cpp dos_memory.cpp dos_misc.cpp dos_mscdex.cpp dos_programs.cpp dos_tables.cpp drive_cache.cpp drive_fat.cpp drive_iso.cpp drive_local.cpp drive_virtual.cpp drives.cpp
+SOURCEPATH ..\src\hardware
+SOURCE adlib.cpp cmos.cpp dma.cpp hardware.cpp iohandler.cpp ipx.cpp ipxserver.cpp joystick.cpp keyboard.cpp memory.cpp mixer.cpp pcspeaker.cpp pic.cpp sblaster.cpp timer.cpp vga.cpp vga_attr.cpp vga_crtc.cpp vga_dac.cpp vga_draw.cpp vga_gfx.cpp vga_memory.cpp vga_misc.cpp vga_other.cpp vga_s3.cpp vga_seq.cpp vga_xga.cpp
+SOURCEPATH ..\src\ints
+SOURCE bios.cpp bios_disk.cpp bios_keyboard.cpp ems.cpp int10.cpp int10_char.cpp int10_memory.cpp int10_misc.cpp int10_modes.cpp int10_pal.cpp int10_put_pixel.cpp int10_vesa.cpp mouse.cpp xms.cpp
+SOURCEPATH ..\src\misc
+SOURCE messages.cpp programs.cpp setup.cpp support.cpp
+SOURCEPATH ..\src\shell
+SOURCE shell.cpp shell_batch.cpp shell_cmds.cpp shell_misc.cpp
+SOURCEPATH ..\src\dos
+SOURCE cdrom_image.cpp
+
+SOURCEPATH ..\src\hardware
+SOURCE fmopl.cpp
+SOURCEPATH ..\src\gui
+SOURCE sdl_mapper.cpp
+SOURCEPATH ..\src\hardware\serialport
+SOURCE directserial_posix.cpp misc_util.cpp nullmodem.cpp serialdummy.cpp serialport.cpp softmodem.cpp
+SOURCEPATH ..\src\gui
+SOURCE midi.cpp
+EPOCSTACKSIZE 40000
+SOURCEPATH ..\src\platform\s60
+SOURCE s60sdl.cpp
+SOURCEPATH ..\src\dos
+SOURCE cdrom_aspi_win32.cpp cdrom_ioctl_linux.cpp cdrom_ioctl_os2.cpp cdrom_ioctl_win32.cpp
+SOURCEPATH ..\src\cpu
+SOURCE core_dynrec.cpp

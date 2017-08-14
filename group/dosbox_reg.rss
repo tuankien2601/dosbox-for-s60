@@ -1,0 +1,11 @@
+#include <appinfo.rh>
+#include <dosbox.rsg>
+
+UID2 KUidAppRegistrationResourceFile
+UID3 0xA00042DD
+RESOURCE APP_REGISTRATION_INFO
+{
+	app_file = "DOSBox";
+	localisable_resource_file = "\\resource\\apps\\dosbox";
+	localisable_resource_id = R_APP_INFO;
+}
