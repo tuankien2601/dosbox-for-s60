@@ -1,0 +1,78 @@
+#################
+# special keys: #
+#################
+#
+#	VMOUSEUP	= 0
+#	VMOUSEDOWN	= 1
+#	VMOUSELEFT	= 2
+#	VMOUSERIGHT	= 3
+#	VMOUSE0		= 4
+#	VMOUSE1		= 5
+#	VMOUSE2		= 6
+#	PANUP		= 7
+#	PANDOWN		= 8
+#	PANLEFT		= 9
+#	PANRIGHT	= 10
+#
+#############
+# key roles #
+#############
+#
+#	NORMAL		= 0
+#	SPECIAL		= 1
+#	TOGGLE		= 2
+#	MODIFY		= 3
+#
+#
+
+
+# default map (0)
+#define 'recieve call' key to toggle to virtual mouse mode (map 1)
+
+map 0 1
+
+278 2 1
+
+#virtual mouse map (1)
+
+map 1 9
+
+278 2 0
+273 1 0
+274 1 1
+276 1 2
+275 1 3
+13 1 4
+35 1 4
+48 1 6
+42 1 5
+
+
+
+
+#################################
+# T9 keypad codes for reference #
+#################################
+# 
+# key_1 "key 49"
+# key_2 "key 50"
+# key_3 "key 51"
+# key_4 "key 52"
+# key_5 "key 53"
+# key_6 "key 54"
+# key_7 "key 55"
+# key_8 "key 56"
+# key_y "key 57"
+# key_0 "key 48"
+# key_space "key 32"	(left soft key)
+# key_esc "key 27"		(right soft key)
+# key_home "key 278"	(recieve call)
+# key_enter "key 13"	(thumb thigy push)
+# key_up "key 273"
+# key_down "key 274"
+# key_left "key 276"
+# key_right "key 275"
+# key_bspace "key 8"
+# key_hash "key 35"
+# key_asterisk "key 42"
+#

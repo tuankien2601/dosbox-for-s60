@@ -1,0 +1,33 @@
+; Installation file for  application
+;
+; This is an auto-generated PKG file by Carbide.
+; This file uses variables specific to Carbide builds that will not work
+; on command-line builds. If you want to use this generated PKG file from the
+; command-line tools you will need to modify the variables with the appropriate
+; values: $(EPOCROOT), $(PLATFORM), $(TARGET)
+;
+;Language - standard language definitions
+&EN
+
+; standard SIS file header
+#{"DOSBox"},(0xA00042DD),0,72,0
+
+;Localised Vendor name
+%{"Vendor-EN"}
+
+;Unique Vendor name
+:"Vendor"
+
+;Supports Series 60 v 3.0
+[0x101F7961], 0, 0, 0, {"Series60ProductID"}
+
+;Files to install
+"$(EPOCROOT)Epoc32\release\$(PLATFORM)\$(TARGET)\dosbox.exe"		-"!:\sys\bin\dosbox.exe"
+"$(EPOCROOT)Epoc32\data\z\resource\apps\dosbox.rsc"					-"!:\resource\apps\dosbox.rsc"
+"$(EPOCROOT)Epoc32\data\z\private\10003a3f\apps\dosbox_reg.rsc"		-"!:\private\10003a3f\import\apps\dosbox_reg.rsc"
+"$(EPOCROOT)Epoc32\data\z\resource\apps\dosbox_aif.mbm"				-"!:\resource\apps\dosbox_aif.mbm"
+"$(EPOCROOT)Epoc32\data\z\resource\apps\dosbox_aif.mif"				-"!:\resource\apps\dosbox_aif.mif"
+;"sdl_param.txt"  													-"C:\private\A00042DD\sdl_param.txt"
+
+;required for application to be covered by backup/restore facility 
+"..\sis\backup_registration.xml"		-"!:\private\A00042DD\backup_registration.xml"
